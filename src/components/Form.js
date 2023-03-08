@@ -91,77 +91,115 @@ function Form() {
   };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
-      <div className="input-row">
-        <label htmlFor="fname">İsim:</label>
-        <input
-          type="text"
-          onChange={(e) => formOnChange(e)}
-          id="fname"
-          name="fname"
-          value={formData.fname}
-        />
-        {formError.fname && (
-          <div className="error">Hata: {formError["fname"]}</div>
-        )}
-      </div>
-      <div className="input-row">
-        <label htmlFor="flname">Soyisim:</label>
-        <input
-          type="text"
-          onChange={(e) => formOnChange(e)}
-          id="flname"
-          name="flname"
-          value={formData.flname}
-        />
-        {formError.flname && (
-          <div className="error">Hata: {formError.flname}</div>
-        )}
-      </div>
-      <div className="input-row">
-        <label htmlFor="femail">Eposta</label>
-        <input
-          type="text"
-          onChange={(e) => formOnChange(e)}
-          id="femail"
-          name="femail"
-          value={formData.femail}
-        />
-        {formError.femail && (
-          <div className="error">Hata: {formError.femail} </div>
-        )}
-      </div>
-      <div className="input-row">
-        <label htmlFor="fpass">Parola</label>
-        <input
-          type="password"
-          onChange={(e) => formOnChange(e)}
-          id="fpass"
-          name="fpass"
-          value={formData.fpass}
-        />
-        {formError.fpass && (
-          <div className="error">Hata: {formError.fpass}</div>
-        )}
-      </div>
-      <div className="input-row">
-        <label htmlFor="fterms">Onay</label>
-        <input
-          type="checkbox"
-          onChange={(e) => formOnChange(e)}
-          id="fterms"
-          name="fterms"
-          value="Approved"
-          checked={formData.fterms}
-        />
-        {formError.fterms && (
-          <div className="error">Hata: {formError.fterms}</div>
-        )}
-      </div>
-      <div className="input-row">
-        <button type="submit" value="Submit">
-          Gönder Gitsin
-        </button>
+    <form
+      className="overflow-hidden shadow sm:rounded-md w-3/5 m-10"
+      onSubmit={(e) => handleSubmit(e)}
+    >
+      <div className="overflow-hidden shadow sm:rounded-md">
+        <div className="bg-white px-4 py-5 sm:p-6">
+          <div className="grid grid-cols-6 gap-6"></div>
+          <div className="col-span-6 sm:col-span-3">
+            <label
+              className="block text-sm font-medium leading-6 text-gray-900"
+              htmlFor="fname"
+            >
+              İsim:
+            </label>
+            <input
+              className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              type="text"
+              onChange={(e) => formOnChange(e)}
+              id="fname"
+              name="fname"
+              value={formData.fname}
+            />
+            {formError.fname && (
+              <div className="error">Hata: {formError["fname"]}</div>
+            )}
+          </div>
+          <div className="col-span-6 sm:col-span-3">
+            <label
+              className="block text-sm font-medium leading-6 text-gray-900"
+              htmlFor="flname"
+            >
+              Soyisim:
+            </label>
+            <input
+              className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              type="text"
+              onChange={(e) => formOnChange(e)}
+              id="flname"
+              name="flname"
+              value={formData.flname}
+            />
+            {formError.flname && (
+              <div className="error">Hata: {formError.flname}</div>
+            )}
+          </div>
+          <div className="col-span-6 sm:col-span-3">
+            <label
+              className="block text-sm font-medium leading-6 text-gray-900"
+              htmlFor="femail"
+            >
+              Eposta
+            </label>
+            <input
+              className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              type="text"
+              onChange={(e) => formOnChange(e)}
+              id="femail"
+              name="femail"
+              value={formData.femail}
+            />
+            {formError.femail && (
+              <div className="error">Hata: {formError.femail} </div>
+            )}
+          </div>
+          <div className="col-span-6 sm:col-span-3">
+            <label
+              className="block text-sm font-medium leading-6 text-gray-900"
+              htmlFor="fpass"
+            >
+              Parola
+            </label>
+            <input
+              className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              type="password"
+              onChange={(e) => formOnChange(e)}
+              id="fpass"
+              name="fpass"
+              value={formData.fpass}
+            />
+            {formError.fpass && (
+              <div className="error">Hata: {formError.fpass}</div>
+            )}
+          </div>
+          <div className="col-span-6 sm:col-span-3">
+            <label
+              className="block text-sm font-medium leading-6 text-gray-900"
+              htmlFor="fterms"
+            >
+              Onay
+            </label>
+            <input
+              className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              type="checkbox"
+              onChange={(e) => formOnChange(e)}
+              id="fterms"
+              name="fterms"
+              value="Approved"
+              checked={formData.fterms}
+            />
+            {formError.fterms && (
+              <div className="error">Hata: {formError.fterms}</div>
+            )}
+          </div>
+          <div className="col-span-6 sm:col-span-3">
+            <button type="submit" value="Submit">
+              Gönder Gitsin
+            </button>
+          </div>
+        </div>
       </div>
     </form>
   );
