@@ -13,6 +13,26 @@
   }
 }
 
+.input-row {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.input-row label {
+  display: block;
+}
+
+.input-row input {
+  display: block;
+  height: 30px;
+  padding: 5px 15px;
+}
+.input-row .error {
+  margin-top: 10px;
+  font-size: small;
+  color: tomato;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
