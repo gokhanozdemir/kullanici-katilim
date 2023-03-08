@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import * as Yup from "yup";
+import axios from "axios";
 
 function Form() {
   const emptyForm = {
@@ -9,8 +10,25 @@ function Form() {
     fpass: "",
     fterms: false,
   };
+  const initalMembers = [
+    {
+      fname: "Rumeysa",
+      flname: "İleri",
+      femail: "r@r.com",
+      fpass: "123456",
+      fterms: true,
+    },
+    {
+      fname: "Berk",
+      flname: "Akaz",
+      femail: "b@b.com",
+      fpass: "123466",
+      fterms: true,
+    },
+  ];
   const [formData, setFormData] = useState(emptyForm);
   const [formError, setFormError] = useState([]);
+  const [teamMembers, setteamMembers] = useState(initalMembers);
 
   const rumeysaSchema = Yup.object().shape({
     fname: Yup.string().required("Dostum adın ne?"),
@@ -43,6 +61,14 @@ function Form() {
       });
   };
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log(event);
+    axios.post("https://reqres.in/api/users", formData).then((res) => {
+      setteamMembers([...teamMembers, res.data]);
+    });
+  }
+
   // forma değer girdikçe
   const formOnChange = (event) => {
     // isterseniz destructre edebilirsiniz
@@ -62,17 +88,10 @@ function Form() {
         ? event.target.checked
         : event.target.value
     );
-    // formSchema
-    //   .validate(formData)
-    //   .then(// success)
-    //   .catch(function (err) {
-    //     // err.name; // => 'ValidationError'
-    //     // err.errors; // => ['Deve ser maior que 18']
-    //   });
   };
 
   return (
-    <form onSubmit={() => null}>
+    <form onSubmit={(e) => handleSubmit(e)}>
       <div className="input-row">
         <label htmlFor="fname">İsim:</label>
         <input
