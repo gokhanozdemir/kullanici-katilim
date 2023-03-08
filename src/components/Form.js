@@ -3,15 +3,16 @@ import * as Yup from "yup";
 
 function Form() {
   const emptyForm = {
-    fname: "f",
-    flname: "l",
-    femail: "e",
-    fpass: "p",
+    fname: "",
+    flname: "",
+    femail: "",
+    fpass: "",
     fterms: false,
   };
   const [formData, setFormData] = useState(emptyForm);
+  const [formError, setFormError] = useState([]);
 
-  const formSchema = Yup.object().shape({
+  const rumeysaSchema = Yup.object().shape({
     fname: Yup.string().required("Dostum adın ne?"),
     flname: Yup.string().required("Ama soy adın da gerekli :/"),
     femail: Yup.string()
@@ -22,14 +23,45 @@ function Form() {
       .min(6, "bu kadar kısa olmassın en az 6 karakter :)"),
     fterms: Yup.boolean().oneOf([true], "Veri paylaşımı bla bla"),
   });
-  const olala = "Gökhan";
+
+  const checkError = (name, value) => {
+    // console.log(checkErrors)
+    Yup.reach(rumeysaSchema, name)
+      .validate(value)
+      .then(() => {
+        setFormError({
+          ...formError,
+          [name]: null,
+        });
+      })
+      .catch((err) => {
+        // console.log("err", err.errors);
+        setFormError({
+          ...formError,
+          [name]: err.errors[0],
+        });
+      });
+  };
+
+  // forma değer girdikçe
   const formOnChange = (event) => {
-    console.log("event:", event.target.name, event.target.value);
+    // isterseniz destructre edebilirsiniz
+    //const { value, type, checked, name } = e.target;
+    // console.log("event:", event.target.name, event.target.value);
     const updatedFormData = {
       ...formData,
-      [event.target.name]: event.target.value, // dynamic object key
+      [event.target.name]:
+        event.target.type === "checkbox"
+          ? event.target.checked
+          : event.target.value, // dynamic object key
     };
     setFormData(updatedFormData);
+    checkError(
+      event.target.name,
+      event.target.type === "checkbox"
+        ? event.target.checked
+        : event.target.value
+    );
     // formSchema
     //   .validate(formData)
     //   .then(// success)
@@ -50,7 +82,9 @@ function Form() {
           name="fname"
           value={formData.fname}
         />
-        <div className="error">Hata: </div>
+        {formError.fname && (
+          <div className="error">Hata: {formError["fname"]}</div>
+        )}
       </div>
       <div className="input-row">
         <label htmlFor="flname">Soyisim:</label>
@@ -61,7 +95,9 @@ function Form() {
           name="flname"
           value={formData.flname}
         />
-        <div className="error">Hata: </div>
+        {formError.flname && (
+          <div className="error">Hata: {formError.flname}</div>
+        )}
       </div>
       <div className="input-row">
         <label htmlFor="femail">Eposta</label>
@@ -72,7 +108,9 @@ function Form() {
           name="femail"
           value={formData.femail}
         />
-        <div className="error">Hata: </div>
+        {formError.femail && (
+          <div className="error">Hata: {formError.femail} </div>
+        )}
       </div>
       <div className="input-row">
         <label htmlFor="fpass">Parola</label>
@@ -83,7 +121,9 @@ function Form() {
           name="fpass"
           value={formData.fpass}
         />
-        <div className="error">Hata: </div>
+        {formError.fpass && (
+          <div className="error">Hata: {formError.fpass}</div>
+        )}
       </div>
       <div className="input-row">
         <label htmlFor="fterms">Onay</label>
@@ -95,6 +135,9 @@ function Form() {
           value="Approved"
           checked={formData.fterms}
         />
+        {formError.fterms && (
+          <div className="error">Hata: {formError.fterms}</div>
+        )}
       </div>
       <div className="input-row">
         <button type="submit" value="Submit">
