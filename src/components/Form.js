@@ -92,7 +92,7 @@ function Form() {
 
   return (
     <form
-      className="overflow-hidden shadow sm:rounded-md w-3/5 m-10"
+      className="overflow-hidden shadow sm:rounded-md m-10"
       onSubmit={(e) => handleSubmit(e)}
     >
       <div className="overflow-hidden shadow sm:rounded-md">
@@ -108,6 +108,7 @@ function Form() {
             <input
               className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               type="text"
+              data-cy="fname"
               onChange={(e) => formOnChange(e)}
               id="fname"
               name="fname"
@@ -127,6 +128,7 @@ function Form() {
             <input
               className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               type="text"
+              data-cy="flname"
               onChange={(e) => formOnChange(e)}
               id="flname"
               name="flname"
@@ -146,13 +148,14 @@ function Form() {
             <input
               className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               type="text"
+              data-cy="femail"
               onChange={(e) => formOnChange(e)}
               id="femail"
               name="femail"
               value={formData.femail}
             />
             {formError.femail && (
-              <div className="error">Hata: {formError.femail} </div>
+              <div className="error">Hata: {formError.femail}</div>
             )}
           </div>
           <div className="col-span-6 sm:col-span-3">
@@ -165,6 +168,7 @@ function Form() {
             <input
               className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               type="password"
+              data-cy="fpass"
               onChange={(e) => formOnChange(e)}
               id="fpass"
               name="fpass"
@@ -179,11 +183,12 @@ function Form() {
               className="block text-sm font-medium leading-6 text-gray-900"
               htmlFor="fterms"
             >
-              Onay
+              Şartların kabulü
             </label>
             <input
-              className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              className="mt-2 block  py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               type="checkbox"
+              data-cy="fterms"
               onChange={(e) => formOnChange(e)}
               id="fterms"
               name="fterms"
@@ -195,7 +200,12 @@ function Form() {
             )}
           </div>
           <div className="col-span-6 sm:col-span-3">
-            <button type="submit" value="Submit">
+            <button
+              className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              type="submit"
+              data-cy="submitBtn"
+              value="Submit"
+            >
               Gönder Gitsin
             </button>
           </div>
